@@ -1,17 +1,16 @@
 package models
 
 import (
-"fmt"
-"image/color"
+	"fmt"
+	"image/color"
 
-"github.com/mojocn/base64Captcha"
+	"github.com/mojocn/base64Captcha"
 )
 
 //创建store
-//var store = base64Captcha.DefaultMemStore
-var store  base64Captcha.Store = RedisStore{}
+var store = RedisStore{}
 
-// MakeCaptcha 获取验证码
+//获取验证码
 func MakeCaptcha() (string, string, error) {
 	var driver base64Captcha.Driver
 	driverString := base64Captcha.DriverString{
@@ -19,7 +18,7 @@ func MakeCaptcha() (string, string, error) {
 		Width:           100,
 		NoiseCount:      0,
 		ShowLineOptions: 2 | 4,
-		Length:          4,
+		Length:          2,
 		Source:          "1234567890qwertyuioplkjhgfdsazxcvbnm",
 		BgColor: &color.RGBA{
 			R: 3,
@@ -38,7 +37,7 @@ func MakeCaptcha() (string, string, error) {
 
 }
 
-// VerifyCaptcha 验证验证码
+//验证验证码
 func VerifyCaptcha(id string, VerifyValue string) bool {
 	fmt.Println(id, VerifyValue)
 	if store.Verify(id, VerifyValue, true) {

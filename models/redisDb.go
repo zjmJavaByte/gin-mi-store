@@ -1,15 +1,6 @@
 package models
 
-import (
-	"context"
-	"fmt"
-	"github.com/go-redis/redis/v8"
-	"gopkg.in/ini.v1"
-	"os"
-)
-
-
-var (
+/*var (
 	RedisDb *redis.Client
 )
 
@@ -37,3 +28,4 @@ func init() {
 
 
 }
+*/

@@ -155,7 +155,7 @@ func GetSettingFromColumn(columnName string) string {
 
 //获取Oss的状态
 func GetOssStatus() int {
-	config, iniErr := ini.Load("conf/app.ini")
+	config, iniErr := ini.Load("./conf/app.ini")
 	if iniErr != nil {
 		fmt.Printf("Fail to read file: %v", iniErr)
 		os.Exit(1)
@@ -256,7 +256,7 @@ func LocalUploadImg(c *gin.Context, picName string) (string, error) {
 	day := GetDay()
 	dir := "./static/upload/" + day
 
-	err1 := os.MkdirAll(dir, os.ModePerm)
+	err1 := os.MkdirAll(dir, 0666)
 	if err1 != nil {
 		fmt.Println(err1)
 		return "", err1
@@ -267,8 +267,8 @@ func LocalUploadImg(c *gin.Context, picName string) (string, error) {
 
 	// 5、执行上传
 	dst := path.Join(dir, fileName)
-	err = c.SaveUploadedFile(file, dst)
-	return dst, err
+	c.SaveUploadedFile(file, dst)
+	return dst, nil
 
 }
 

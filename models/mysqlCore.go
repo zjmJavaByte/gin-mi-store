@@ -2,12 +2,12 @@ package models
 
 //https://gorm.io/zh_CN/docs/connecting_to_the_database.html
 import (
-"fmt"
-"os"
+	"fmt"
+	"os"
 
-"gopkg.in/ini.v1"
-"gorm.io/driver/mysql"
-"gorm.io/gorm"
+	"gopkg.in/ini.v1"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
@@ -16,7 +16,7 @@ var err error
 func init() {
 	//读取.ini里面的数据库配置
 
-	config, iniErr := ini.Load("conf/app.ini")
+	config, iniErr := ini.Load("./conf/app.ini")
 	if iniErr != nil {
 		fmt.Printf("Fail to read file: %v", iniErr)
 		os.Exit(1)

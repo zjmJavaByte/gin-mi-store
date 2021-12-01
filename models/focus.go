@@ -1,14 +1,14 @@
 package models
 
 type Focus struct {
-	Id        int    `form:"id" json:"id"`
-	Title     string `form:"title" json:"title"`
-	FocusType int    `form:"focus_type" json:"focusType"`
-	FocusImg  string `form:"focusImg" json:"focusImg"`
-	Link      string `form:"link" json:"link"`
-	Sort      int    `form:"sort" json:"sort"`
-	Status    int    `form:"status" json:"status"`
-	AddTime   int    `form:"addTime" json:"addTime"`
+	Id        int
+	Title     string
+	FocusType int
+	FocusImg  string
+	Link      string
+	Sort      int
+	Status    int
+	AddTime   int
 }
 
 func (Focus) TableName() string {

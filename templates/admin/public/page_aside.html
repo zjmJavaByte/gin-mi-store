@@ -13,21 +13,21 @@
                     {{end}}
                 </ul>
             </li>  
-        {{else}}
-            {{if eq $value.Checked true}}
+        {{else}} 
+            {{if eq $value.Checked true}} 	
                 <li>
-                    <h4>{{$value.ModuleName}}</h4>
+                    <h4>{{$value.ModuleName}}</h4>                    
                     <ul>
-                        {{range $k,$v := $value.AccessItem}}
-                            {{if eq $v.Checked true}}
-                                {{if eq $v.Type 2}}
+                        {{range $k,$v := $value.AccessItem}} 
+                            {{if eq $v.Checked true}}  
+                                {{if eq $v.Type 2}} 		  
                                     <li class="list-group-item"> <a href="/admin/{{$v.Url}}" target="rightMain">{{$v.ActionName}}</a></li>
                                 {{end}}
                             {{end}}
                         {{end}}
                     </ul>
-                </li>
-            {{end}}
+                </li>  
+            {{end}} 
         {{end}} 
     {{end}}
 </ul>

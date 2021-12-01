@@ -2,12 +2,12 @@ package routes
 
 import (
 	"gin-mi-store/controllers/admin"
-	"gin-mi-store/middlwares"
+	middlwares2 "gin-mi-store/controllers/admin/middlwares"
 	"github.com/gin-gonic/gin"
 )
 
 func AdminRouterInit(router *gin.Engine) {
-	adminRouter := router.Group("/admin",middlwares.InitAdminAuthMiddleware)
+	adminRouter := router.Group("/admin", middlwares2.InitAdminAuthMiddleware)
 	{
 		adminRouter.GET("/", admin.MainController{}.Index)
 		adminRouter.GET("/welcome", admin.MainController{}.Welcome)
@@ -15,8 +15,8 @@ func AdminRouterInit(router *gin.Engine) {
 		adminRouter.GET("/changeNum", admin.MainController{}.ChangeNum)
 
 		adminRouter.GET("/login", admin.LoginController{}.Index)
-		adminRouter.GET("/captcha",admin.LoginController{}.Captcha)
-		adminRouter.POST("/doLogin",admin.LoginController{}.DoLogin)
+		adminRouter.GET("/captcha", admin.LoginController{}.Captcha)
+		adminRouter.POST("/doLogin", admin.LoginController{}.DoLogin)
 		adminRouter.GET("/loginOut", admin.LoginController{}.LoginOut)
 
 		adminRouter.GET("/manager", admin.ManagerController{}.Index)
@@ -72,7 +72,23 @@ func AdminRouterInit(router *gin.Engine) {
 
 		adminRouter.GET("/goods", admin.GoodsController{}.Index)
 		adminRouter.GET("/goods/add", admin.GoodsController{}.Add)
+		adminRouter.POST("/goods/doAdd", admin.GoodsController{}.DoAdd)
+		adminRouter.GET("/goods/edit", admin.GoodsController{}.Edit)
+		adminRouter.POST("/goods/doEdit", admin.GoodsController{}.DoEdit)
+		adminRouter.GET("/goods/changeGoodsImageColor", admin.GoodsController{}.ChangeGoodsImageColor)
+		adminRouter.GET("/goods/removeGoodsImage", admin.GoodsController{}.RemoveGoodsImage)
 		adminRouter.GET("/goods/goodsTypeAttribute", admin.GoodsController{}.GoodsTypeAttribute)
 		adminRouter.POST("/goods/imageUpload", admin.GoodsController{}.ImageUpload)
+		adminRouter.GET("/goods/delete", admin.GoodsController{}.Delete)
+
+		adminRouter.GET("/nav", admin.NavController{}.Index)
+		adminRouter.GET("/nav/add", admin.NavController{}.Add)
+		adminRouter.POST("/nav/doAdd", admin.NavController{}.DoAdd)
+		adminRouter.GET("/nav/edit", admin.NavController{}.Edit)
+		adminRouter.POST("/nav/doEdit", admin.NavController{}.DoEdit)
+		adminRouter.GET("/nav/delete", admin.NavController{}.Delete)
+
+		adminRouter.GET("/setting", admin.SettingController{}.Index)
+		adminRouter.POST("/setting/doEdit", admin.SettingController{}.DoEdit)
 	}
 }
